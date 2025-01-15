@@ -19,6 +19,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const Listing = require("./models/listing.js");
+const wrapAsync = require("./utils/wrapAsync.js");
 const dbUrl = process.env.ATLASDB_URL;
 
 main()
@@ -101,6 +102,16 @@ app.get("/search", async (req, res) => {
 
   res.render("listings/result.ejs", { query, results });
 });
+
+app.get(
+  "/listings/category/:category",
+  wrapAsync(async (req, res) => {
+    const category = req.params.category;
+    const listings = await Listing.find({ category: category });
+
+    res.render("listings/filters.ejs", { listings, category });
+  })
+);
 
 // middleware
 app.all("*", (req, res, next) => {
