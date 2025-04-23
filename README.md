@@ -40,5 +40,5 @@ WanderLust lets users:
 
 ## 🌐 Live Website & Hosting
 
-🔗 **Visit WanderLust** – [https://wanderlust-qgxn.onrender.com/listings](https://wanderlust-qgxn.onrender.com/listings)  
-🚀 **Hosted on:** Render – scalable deployment for Node.js apps
+- 🔗 [Visit WanderLust](https://wanderlust-qgxn.onrender.com/listings)  
+- 🚀 **Hosted on:** Render – scalable deployment for Node.js apps
