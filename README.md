@@ -21,7 +21,7 @@ WanderLust lets users:
 - **Node.js & Express** – Backend and server handling  
 - **MongoDB & Mongoose** – Database and schema modeling  
 - **EJS** – Templating engine for dynamic HTML  
-- **Bootstrap / Tailwind** – Sleek and mobile-ready UI  
+- **Bootstrap** – Sleek and mobile-ready UI  
 - **Passport.js** – User authentication  
 - **Cloudinary** – Image upload & management  
 - **Render** – Live deployment and hosting
