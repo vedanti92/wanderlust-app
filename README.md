@@ -17,7 +17,7 @@ WanderLust lets users:
 ---
 
 ## 📂 Folder Structure
-
+```
 WanderLust/
 ├── controllers/
 │   ├── listings.js
@@ -70,7 +70,7 @@ WanderLust/
 ├── package-lock.json
 ├── package.json
 └── schema.js
-
+```
 ---
 
 ## 🛠️ Built With
