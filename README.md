@@ -16,8 +16,20 @@ WanderLust lets users:
 
 ---
 
-## 📂 Folder Structure
+## 🛠️ Built With
 
+- **Node.js & Express** – Backend and server handling  
+- **MongoDB & Mongoose** – Database and schema modeling  
+- **EJS** – Templating engine for dynamic HTML  
+- **Bootstrap** – Sleek and mobile-ready UI  
+- **Passport.js** – User authentication  
+- **Cloudinary** – Image upload & management  
+- **Render** – Live deployment and hosting
+
+---
+
+## 📂 Folder Structure
+```
 WanderLust/
 ├── controllers/
 │   ├── listings.js
@@ -70,19 +82,7 @@ WanderLust/
 ├── package-lock.json
 ├── package.json
 └── schema.js
-
----
-
-## 🛠️ Built With
-
-- **Node.js & Express** – Backend and server handling  
-- **MongoDB & Mongoose** – Database and schema modeling  
-- **EJS** – Templating engine for dynamic HTML  
-- **Bootstrap** – Sleek and mobile-ready UI  
-- **Passport.js** – User authentication  
-- **Cloudinary** – Image upload & management  
-- **Render** – Live deployment and hosting
-
+```
 ---
 
 ## ✨ Key Features
