@@ -16,6 +16,63 @@ WanderLust lets users:
 
 ---
 
+## 📂 Folder Structure
+
+WanderLust/
+├── controllers/
+│   ├── listings.js
+│   ├── reviews.js
+│   └── users.js
+├── init/
+│   ├── data.js
+│   └── index.js
+├── listing_images/
+├── models/
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+├── public/
+│   ├── css/
+│   │   ├── rating.css
+│   │   └── style.css
+│   └── js/
+│       ├── map.js
+│       └── script.js
+├── routes/
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+├── utils/
+│   ├── ExpressError.js
+│   └── wrapAsync.js
+├── views/
+│   ├── includes/
+│   │   ├── flash.ejs
+│   │   ├── footer.ejs
+│   │   └── navbar.ejs
+│   ├── layouts/
+│   │   └── boilerplate.ejs
+│   ├── listings/
+│   │   ├── edit.ejs
+│   │   ├── filters.ejs
+│   │   ├── index.ejs
+│   │   ├── new.ejs
+│   │   ├── result.ejs
+│   │   └── show.ejs
+│   ├── users/
+│   │   ├── login.ejs
+│   │   └── signup.ejs
+│   └── error.ejs
+├── .gitignore
+├── app.js
+├── cloudConfig.js
+├── middleware.js
+├── package-lock.json
+├── package.json
+└── schema.js
+
+---
+
 ## 🛠️ Built With
 
 - **Node.js & Express** – Backend and server handling  
