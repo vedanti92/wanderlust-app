@@ -99,3 +99,9 @@ WanderLust/
 
 - 🔗 [Visit WanderLust](https://wanderlust-qgxn.onrender.com/listings)  
 - 🚀 **Hosted on:** Render – scalable deployment for Node.js apps
+
+---
+
+## 📸 Screenshots
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/e5959f1b-ad00-4e54-a802-df4fbb3666d2" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/3ec461e1-03d9-4bf2-8016-a5d33d2a591a" />
