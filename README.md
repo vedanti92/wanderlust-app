@@ -1,4 +1,4 @@
-# 🧭 WanderLust – Travel Listing & Review Platform
+# WanderLust – Travel Listing & Review Platform
 WanderLust is a full-stack travel listing and review platform. Users can post property listings, write reviews, and explore locations on a dynamic map. Server-side rendering with EJS ensures fast, interactive pages.
 
 ---
