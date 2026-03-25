@@ -2,6 +2,8 @@ const Listing = require("../models/listing");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
+const ExpressError = require("../utils/ExpressError.js");
+const mongoose = require("mongoose");
 
 module.exports.index = async (req, res) => {
   const allListings = await Listing.find({});
@@ -14,6 +16,11 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.showListing = async (req, res) => {
   let { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ExpressError(400, "Invalid ID!");
+  }
+
   const listing = await Listing.findById(id)
     .populate({
       path: "reviews",
@@ -24,19 +31,27 @@ module.exports.showListing = async (req, res) => {
     .populate("owner");
   if (!listing) {
     req.flash("error", "The listing you requested does not exist!");
-    res.redirect("/listings");
+    return res.redirect("/listings");
   }
   res.render("listings/show.ejs", { listing });
 };
 
 module.exports.createListing = async (req, res, next) => {
-  let response = await geocodingClient
-    .forwardGeocode({
-      query: req.body.listing.location,
-      limit: 1,
-    })
-    .send();
+  let response;
+  try {
+    response = await geocodingClient
+      .forwardGeocode({
+        query: req.body.listing.location,
+        limit: 1,
+      })
+      .send();
+  } catch (err) {
+    throw new ExpressError(500, "Geocoding service failed!");
+  }
 
+  if (!req.file) {
+    throw new ExpressError(400, "Image is required!");
+  }
   let url = req.file.path;
   let filename = req.file.filename;
   const category = req.body.listing.category;
@@ -45,6 +60,10 @@ module.exports.createListing = async (req, res, next) => {
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
   newListing.category = category;
+
+  if (!response.body.features.length) {
+    throw new ExpressError(400, "Invalid location!");
+  }
   newListing.geometry = response.body.features[0].geometry;
 
   await newListing.save();
@@ -54,10 +73,15 @@ module.exports.createListing = async (req, res, next) => {
 
 module.exports.renderEditForm = async (req, res) => {
   let { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ExpressError(400, "Invalid ID!");
+  }
+
   const listing = await Listing.findById(id);
   if (!listing) {
     req.flash("error", "The listing you requested does not exist!");
-    res.redirect("/listings");
+    return res.redirect("/listings");
   }
 
   let originalImageUrl = listing.image.url;
@@ -67,7 +91,16 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
-  let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ExpressError(400, "Invalid ID!");
+  }
+
+  let listing = await Listing.findByIdAndUpdate(
+    id,
+    { ...req.body.listing },
+    { new: true },
+  );
 
   if (typeof req.file !== "undefined") {
     let url = req.file.path;
@@ -82,6 +115,11 @@ module.exports.updateListing = async (req, res) => {
 
 module.exports.destroyListing = async (req, res) => {
   let { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ExpressError(400, "Invalid ID!");
+  }
+
   await Listing.findByIdAndDelete(id);
   req.flash("success", "Listing Deleted!");
   res.redirect("/listings");
